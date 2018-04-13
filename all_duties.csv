@@ -1,0 +1,13 @@
+duty,number of people,upperclassmen required? (soph or above),available?
+outside_door_shift1,2,y,y
+outside_door_shift2,2,y,y
+inside_door_shift1,1,n,y
+inside_door_shift2,1,n,y
+monitor_shift1,1,n,y
+monitor_shift2,1,n,y
+bar_shift1,2,y,y
+bar_shift2,2,y,y
+stairs_shift1,1,n,y
+stairs_shift2,1,n,y
+setup,4,n,y
+cleanup,5,n,y
