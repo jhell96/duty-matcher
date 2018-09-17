@@ -77,6 +77,8 @@ class Matcher():
         # creates bins by year
         stack = [[], [], [], []]
 
+        self.brothers = [b for b in self.brothers if b.name != 'daniel smith']
+        
         for b in self.brothers:
             stack[b.year-1].append(b)
 
