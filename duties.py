@@ -41,6 +41,12 @@ class Brother():
             self.grade = 'senior'
             self.is_upperclassmen = True
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class Duty():
     name = None
@@ -66,6 +72,10 @@ class Matcher():
         self.duties = duties
         self.brothers = brothers
         self.quota = year_quota
+        self.jobs = []
+        self.auto_assign_jobs = []
+        self.selected_brothers = []
+        self.matches = {}
 
     def select_brothers(self):
         """ Selects brothers to be chosen for duty.
@@ -191,22 +201,27 @@ def create_brothers(brothers_list):
     return [Brother(" ".join([x[0], x[1]]), int(x[3]), x[2], [int(r) if r != '' else 1 for r in x[4]] ) for x in brothers_list]
 
 
-if __name__ == '__main__':
-
+def get_match_results(quota=[0,0,0,0]):
     # download content from spreadsheet
     content.get_content()
     d, r = content.parse_content()
-    
+
     # set up
     duties = create_duties(d)
     brothers = create_brothers(r)
-    
+
     # run the matching and display results
-    m = Matcher(duties, brothers)
+    m = Matcher(duties, brothers, quota)
     result = m.run()
+
+    return result
+
+
+if __name__ == '__main__':
+
+    result = get_match_results()
 
     for match in sorted(result):
         print("{0}: {1}".format(match, result[match]))
-
 
 
